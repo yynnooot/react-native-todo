@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Navigator } from 'react-native-custom-components'; 
 
 import TaskList from './TaskList';
 
@@ -18,12 +19,34 @@ export default class App extends Component {
         }
       ]
     }
+    this.onAddClick = this.onAddClick.bind(this);
+    this.renderScene = this.renderScene.bind(this);
   }
+
+  onAddClick(){
+    console.log('hello')
+  }
+
+  renderScene(route, nav){
+    switch (route.name){
+      case: 'taskform': 
+        return <Text>Add form comes here</Text>
+      default: 
+        return (
+          <TaskList 
+            todos={this.state.todos}
+            onAddClick={this.onAddClick}
+            style={styles.container}
+          />
+        )
+    }
+  }
+
   render(){
     return (
-      <TaskList 
-        todos={this.state.todos}
-        style={styles.container}
+      <Navigator
+        initialRoute={}
+        renderScene={this.renderScene}
       />
     )
   }

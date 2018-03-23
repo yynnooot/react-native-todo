@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableHighlight, Text } from 'react-native';
 
 import TaskRow from './TaskRow';
 
@@ -16,23 +16,47 @@ export default class TaskList extends Component {
       <View style={styles.container}>
         <FlatList 
           data = {this.state.dataSource}
-          renderItem={({item}) => <TaskRow todos={item}/>}
-        />  
+          renderItem={ ({item}) => <TaskRow todos={item}/> }
+        />
+        <TouchableHighlight 
+          style={styles.button}
+          onPress={this.props.onAddClick}
+        >
+          <Text style={styles.buttonText}>
+            Add Task
+          </Text>
+        </TouchableHighlight>  
       </View>     
     )
   }
 }
 
 TaskList.propTypes = {
+  onAddClick: PropTypes.func.isRequired,
   todos: PropTypes.array
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f7f7f7',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 200
+    paddingTop: 200
+  },
+  button: {
+   height: 60,
+   width: '70%',
+   borderColor: '#05A5D1',
+   borderWidth: 2,
+   backgroundColor: '#333',
+   margin: 20,
+   justifyContent: 'center',
+   alignItems: 'center'
+  },
+  buttonText: {
+    color: '#FAFAFA',
+    fontSize: 20,
+    fontWeight: '600'
   }
 });
