@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { StyleSheet, Text, View, FlatList, TouchableHighlight } from 'react-native';
+
 
 import TaskRow from './TaskRow';
 import TaskForm from './TaskForm';
@@ -49,6 +51,7 @@ export default class TaskList extends Component {
           onPress={this.onAddForm}
           >
           <Text style={styles.addButtonText}>Add Task</Text>
+
         </TouchableHighlight>  
       </View>     
     )
