@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class TaskRow extends Component{
   constructor(props){
     super(props);
     this.state = {}
+    
+    this.onDonePressed = this.onDonePressed.bind(this)
+  }
+  onDonePressed(){
+    this.props.onDone(this.props.todo)
   }
   render(){
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>{this.props.todos.task}</Text>
+        <Text style={styles.label}>{this.props.todo.task}</Text>
+        <TouchableHighlight 
+          style={styles.doneBtn}
+          onPress={this.onDonePressed}
+          >
+          <Text>Done</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -29,6 +40,10 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 20,
     fontWeight: '300'
+  },
+  doneBtn: {
+    borderRadius: 5,
+    padding: 5,
   }
 })
 
