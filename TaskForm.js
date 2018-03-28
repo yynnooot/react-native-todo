@@ -39,7 +39,7 @@ export default class TaskForm extends Component{
     )
   }
 }
-TaskForm.PropTypes = {
+TaskForm.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onAddTask: PropTypes.func.isRequired
 }

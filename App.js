@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, NavigatorIOS } from 'react-native';
-
+import store from './todoStore';
 import TaskList from './TaskList';
 
 export default class App extends Component {
@@ -10,11 +10,11 @@ export default class App extends Component {
       todos: [
         {
           task: 'Create React Native App',
-          key: 'item1'
+          key: 'item 1'
         },
         {
           task: 'Buy Milk',
-          key: 'item2'
+          key: 'item 2'
         }
       ]
     }
@@ -26,13 +26,26 @@ export default class App extends Component {
   onAddTask(text){
     this.state.todos.push({
       task: text,
-      key: `item${this.state.todos.length + 1}`
+      key: `item ${this.state.todos.length + 1}`
     })
     this.setState({todos: this.state.todos})
+    console.log('added task:', this.state.todos)
     this.refs.nav.pop();
   }
+
   onDone(task){
-    console.log('done was hit', task)
+    console.log("todo before setState:", this.state.todos)
+    origLength = this.state.todos.length
+    const filteredTodos = this.state.todos.filter(todo => {
+        return todo !== task
+      })
+    if(filteredTodos.length === (origLength - 1)){
+      this.setState({todos: filteredTodos});
+      console.log('state changed')
+    }
+    
+    console.log("filteredtodos", filteredTodos)
+    console.log('todo after setstate:', this.state.todos)
   }
 
   render(){

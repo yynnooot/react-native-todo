@@ -11,6 +11,7 @@ export default class TaskRow extends Component{
   }
   onDonePressed(){
     this.props.onDone(this.props.todo)
+    console.log("todo to delete:", this.props.todo)
   }
   render(){
     return (
@@ -51,5 +52,6 @@ const styles = StyleSheet.create({
 TaskRow.propTypes = {
   todo: PropTypes.shape({
     task: PropTypes.string.isRequired
-  })
+  }),
+  onDone: PropTypes.func.isRequired
 }

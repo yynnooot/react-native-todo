@@ -39,12 +39,11 @@ export default class TaskList extends Component {
       <View style={styles.container}>
         <FlatList 
           data = {this.state.dataSource}
-          extraData = {this.state}
-          renderItem={({item}) => 
-            <TaskRow 
+          extraData = {this.props}
+          renderItem={({item}) => (<TaskRow 
               todo={item}
               onDone={this.props.onDone}
-              />}
+              />)}
         />
         <TouchableHighlight 
           style={styles.addButton}
